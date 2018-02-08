@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MS-PL license.
 // See the LICENSE file in the project root for more information.
 
@@ -22,14 +22,14 @@ namespace MvvmCross.Forms.Uwp
 {
     public abstract class MvxFormsWindowsSetup : MvxWindowsSetup
     {
-        private readonly LaunchActivatedEventArgs _launchActivatedEventArgs;
+        private readonly IActivatedEventArgs _activatedEventArgs;
         private List<Assembly> _viewAssemblies;
         private MvxFormsApplication _formsApplication;
 
-        protected MvxFormsWindowsSetup(XamlControls.Frame rootFrame, LaunchActivatedEventArgs e)
+        protected MvxFormsWindowsSetup(XamlControls.Frame rootFrame, IActivatedEventArgs e)
             : base(rootFrame)
         {
-            _launchActivatedEventArgs = e;
+            _activatedEventArgs = e;
         }
 
         protected override IEnumerable<Assembly> GetViewAssemblies()
@@ -54,7 +54,7 @@ namespace MvvmCross.Forms.Uwp
             {
                 if (_formsApplication == null)
                 {
-                    Xamarin.Forms.Forms.Init(_launchActivatedEventArgs);
+                    Xamarin.Forms.Forms.Init(_activatedEventArgs);
                     _formsApplication = _formsApplication ?? CreateFormsApplication();
                 }
                 return _formsApplication;

@@ -22,14 +22,12 @@ namespace MvvmCross.Forms.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // note - Culture ignored here!
             var toReturn = Wrapped.Convert(value, targetType, parameter, culture);
             return MapIfSpecialValue(toReturn);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // note - Culture ignored here!
             var toReturn = Wrapped.ConvertBack(value, targetType, parameter, culture);
             return MapIfSpecialValue(toReturn);
         }
@@ -38,7 +36,7 @@ namespace MvvmCross.Forms.Converters
         {
             MvxLog.Instance.Trace("DoNothing and UnsetValue is not available in Xamarin.Forms - returning empty object instead");
             if (toReturn == MvxBindingConstant.DoNothing || toReturn == MvxBindingConstant.UnsetValue)
-            {
+            {    
                 return new object();
             }
             return toReturn;
